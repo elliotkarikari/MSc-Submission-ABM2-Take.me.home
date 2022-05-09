@@ -9,29 +9,53 @@ Created on Thu May  5 16:01:20 2022
 CSV containing details of raster grid is imported and read into model
 It goes through data rows and appends it to our environment list. 
 Thus creating our environment
-""" 
+"""
 
-import csv
+import pandas as pd
 
-#Function creating Environment
-def readEnvironment(): #Define Funciton
-    """  
-    Reads CSV into model 
+class Environment():
+    def __init__(self):
+        self.environment = None
+    # Function creating Environment
+    def readEnvironment(self):  
+        
+        # Load csv file into a Dataframe
+        drunkdata = pd.read_csv('drunk.csv')
     
-    Parameters
-    ----------
-    None
-    ------
-    """      
-    environment = []    #
-    with open('drunk.txt', newline='') as f: #Open and read text file with raster data
-        reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
-        for row in reader:
-            rowlist = []
-            for value in row:
-                rowlist.append(value)
-                #print(value)
-            environment.append(rowlist)
-           
-    return environment
+    # Convert Dataframe into a numpy array
+        self.environment = drunkdata.to_numpy()
+        print (self.environment)
+        return self.environment
+    
+    def get_location(self,x,y):
+        return self.environment[x][y]
+
+
+    
+# Print size of the numpy array
+    #print(environment.shape)
+    
+    
+    # Find all pubs Test
+    # pubs = 0
+    # for i in range(len(environment)):
+    #   for j in range(len(environment)):
+    #      if environment[i][j] == 1:
+    #          pubs += 1
+    #           # print(i,j)
+    #           # print("Pub")
+    #      #print("Number of pubs: ", pubs)
+    
+    
+    #     # Find all houses Test
+    # house = 0
+    # for i in range(len(environment)):
+    #   for j in range(len(environment)):
+    
+    #     if environment[i][j] >=10 or environment[i][j]<=250:
+    #       house += 1
+    #           # print(i,j)
+    #           # print("Home")
+    #     #print("Number of houses: ", house)
+
 
