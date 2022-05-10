@@ -7,79 +7,121 @@ Created on Thu May  5 18:24:02 2022
 
 import random
 
-class Drunk():
-    def __init__(self, envir,drunks):
-        """Agent Constructor.  
-        
-        If parameters aren't passes contrastor doesn't work. 
-        
-        Parameters
-        ----------
-        i: int 
-        identity of agent
-        
-        environ: int
-        List of list (2D list) containing numbers.
-        
-        drunks: list 
-        list of drunks in Model.py
-        These are the drunks in Model.py
-        
-        x: int 
-        x position scrapped from website
-        
-        y: int 
-        y position scrapped from website
-        ------
-        
-        Returns
-        -------
-        None.
-        """    
-       
+
+class Drunk:
+    def __init__(self, envir, drunks, house):
+        """Drunk Constructor.
+
+                Once parameters are created they are passed into function.
+                Attributing characteristics to constructor.
+
+                Parameters
+                ----------
+
+                envir: int
+                2D List.
+
+                drunks: list of drunks in Model.py
+                These are the drunks in Model.py
+
+                Self.is_at_home is an att therefore is not called
+                ------
+
+                Returns
+                -------
+                None.
+                """
         self.env = envir
         self.agents = drunks
-        self.x = 150# Starting point of all drunks
-        self.y = 137 
+        self.x = 150  # Starting point of all drunks
+        self.y = 137
+        self.house = house
         self.is_at_home = False
-        
-        
-    def move_up(self):
-      self.y += 1 % 300
-      return self.x, self.y
-    
-    def move_down(self):
-      self.y -= 1 % 300
-      return self.x, self.y
-    
-    def move_left(self):
-      self.x -= 1 % 300
-      return self.x, self.y
-    
-    def move_right(self):
-     self.x += 1 % 300
-     return self.x,self.y
-    
-    # move
-    # list [0-3]
-    # Generate a random num between 0 and 3
-    # if the random number == 0
-    # move_up()
-        
-    def move(self):
-                                
-        if random.randint(0,3) == 0:
-            x,y = self.move_up()
-            return x,y
-        elif random.randint(0,3) == 1:
-            x,y = self.move_down()
-            return x,y
-        elif random.randint(0,3) == 2:
-            x,y = self.move_left()
-            return x,y
-        else:
-            x,y =self.move_right()
-            return x,y       
-                         
-    
 
+        """       
+                Defining movement. 
+
+                Functions
+                ----------
+                move_up - if self.y is greater than the shape of the environment 
+                self.y would be set to zero and returns location. 
+                (if y position goes beyond map. y goes through the opposite side)
+
+                move_down - if y moves down and out of bounds y = the shape of the environment minus 1.
+                Because columns in data is counted from zero 
+                Therefore 299 columns (300) and gets y to come through opposite side. 
+
+                move_left - if x is goes out on the left x = to shape of environment minus 1 
+                x comes out of other side. 
+
+                move_right - function gets x to come through opposite position if it goes out of bounds.
+                ------
+
+                Returns
+                -------
+                None
+        """
+
+    def move_up(self):
+        self.y += 1
+        if self.y >= self.env.shape[1]:
+            self.y = 0
+
+    def move_down(self):
+        self.y -= 1
+        if self.y < 0:
+            self.y = self.env.shape[1] - 1
+
+    def move_left(self):
+        self.x -= 1
+        if self.x < 0:
+            self.x = self.env.shape[0] - 1
+
+    def move_right(self):
+        self.x += 1
+        if self.x >= self.env.shape[0]:
+            self.x = 0
+
+    def move(self):
+        """
+                Defining movement.
+
+                Functions
+                ----------
+                move_up - if random number generated between 0 and 3 is equals to 0 move up
+                move_down - if random number generated between 0 and 3 is equals to 1 move down
+                move_left - if random number generated between 0 and 3 is equals to 2 move left
+                move_right - if random number generated between 0 and 3 is equals to 0 move right
+                ------
+
+                Returns
+                -------
+                self.x
+                self.y
+
+        """
+        location = random.randint(0, 3)
+        if location == 0:
+            self.move_up()
+
+        elif location == 1:
+            self.move_down()
+
+        elif location == 2:
+            self.move_left()
+        else:
+            self.move_right()
+
+    def steps(self, y, x):
+        """
+               Defining movement.
+
+               Functions
+               ----------
+               Add 1 to the environment with every step. Helps Identify where agents were.
+               ------
+               Returns
+               -------
+                None
+        """
+        self.env[y][x] += 1

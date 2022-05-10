@@ -13,29 +13,35 @@ Thus creating our environment
 
 import pandas as pd
 
-class Environment():
+
+class Environment:
     def __init__(self):
+        """Envrionment Constructor.
+
+                Environment is made empty and read in with readEnvironment function
+                drunk-data.to_numpy -
+                get_location -
+                Environment test finds all pixel identified as pubs and houses
+                Parameters
+                ----------
+                None.
+                ------
+                Returns
+                -------
+                None.
+        """
         self.environment = None
+
     # Function creating Environment
-    def readEnvironment(self):  
-        
+    def read_environment(self):
         # Load csv file into a Dataframe
         drunkdata = pd.read_csv('drunk.csv')
-    
-    # Convert Dataframe into a numpy array
+
+        # Convert Dataframe into a numpy array
         self.environment = drunkdata.to_numpy()
-        print (self.environment)
+        print(self.environment)
         return self.environment
-    
-    def get_location(self,x,y):
-        return self.environment[x][y]
 
-
-    
-# Print size of the numpy array
-    #print(environment.shape)
-    
-    
     # Find all pubs Test
     # pubs = 0
     # for i in range(len(environment)):
@@ -45,17 +51,14 @@ class Environment():
     #           # print(i,j)
     #           # print("Pub")
     #      #print("Number of pubs: ", pubs)
-    
-    
+
     #     # Find all houses Test
     # house = 0
     # for i in range(len(environment)):
     #   for j in range(len(environment)):
-    
+
     #     if environment[i][j] >=10 or environment[i][j]<=250:
     #       house += 1
     #           # print(i,j)
     #           # print("Home")
     #     #print("Number of houses: ", house)
-
-
