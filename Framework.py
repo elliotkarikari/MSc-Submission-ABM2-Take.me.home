@@ -38,46 +38,52 @@ class Drunk:
         self.house = house
         self.is_at_home = False
 
-        """       
-                Defining movement. 
-
-                Functions
-                ----------
-                move_up - if self.y is greater than the shape of the environment 
-                self.y would be set to zero and returns location. 
-                (if y position goes beyond map. y goes through the opposite side)
-
-                move_down - if y moves down and out of bounds y = the shape of the environment minus 1.
-                Because columns in data is counted from zero 
-                Therefore 299 columns (300) and gets y to come through opposite side. 
-
-                move_left - if x is goes out on the left x = to shape of environment minus 1 
-                x comes out of other side. 
-
-                move_right - function gets x to come through opposite position if it goes out of bounds.
-                ------
-
-                Returns
-                -------
-                None
-        """
-
     def move_up(self):
+        """
+                        Defining movement.
+
+                        Functions
+                        ----------
+                        move_up - if self.y is greater than the shape of the environment
+                        self.y would be set to zero and returns location.
+                        (if y position goes beyond map. y goes through the opposite side)
+
+                        Returns
+                        -------
+                        None
+                """
         self.y += 1
         if self.y >= self.env.shape[1]:
             self.y = 0
 
     def move_down(self):
+        """
+        move_down - if y moves down and out of bounds y = the shape of the environment minus 1.
+                        Because columns in data is counted from zero
+                        Therefore 299 columns (300) and gets y to come through opposite side.
+                        ------
+        :return:
+        None
+        """
         self.y -= 1
         if self.y < 0:
             self.y = self.env.shape[1] - 1
 
     def move_left(self):
+        """
+        move_left - if x moves left and out of bounds, function beings it through opposite side.
+        :return:
+        None
+        """
         self.x -= 1
         if self.x < 0:
             self.x = self.env.shape[0] - 1
 
     def move_right(self):
+        """
+        move-right - if x moves right and out of bounds, function brings it through opposite side.
+        :return:
+        """
         self.x += 1
         if self.x >= self.env.shape[0]:
             self.x = 0

@@ -55,7 +55,7 @@ drunks = []
 for i in range(num_of_drunks):
     # Houses are identified in increments of 10 From 10 to 250.
     home = ((1 + i) * 10)
-    drunks.append(Drunk(envir, drunks, house))
+    drunks.append(Drunk(envir, drunks, home))
 
 
 print("Step 4: Animate drunks.")
@@ -76,6 +76,15 @@ frames : int,
 
 
 def update(frames):
+    """Update function largely controls animation.
+        frames display numer of iterations run on screen.
+
+        Parameters
+        ----------
+        frame_number : int,
+            Number of frames - frame is cleared and redrawn after given frame number.
+        ------
+        """
     fig.clear()
     global carry_on
 
@@ -129,6 +138,12 @@ ax = fig.add_axes([0, 0, 1, 1])
 
 
 def run():
+    """ Run function runs simulation.
+        ----------
+        Parameters
+        ----------
+        Does not take any parameters.
+        """
     print("Step 6: Animation.")
     global animation
 
@@ -137,16 +152,26 @@ def run():
 
 
 def stop():
+    """
+    Quit function quits animation
+    :return:
+    None
+    """
     quit()
 
 
 def save_density():
+    """
+    Save density function writes density info to csv file
+    :return:
+    None
+    """
     with open('environment_density.csv', 'w', newline='') as f:
         csvwriter = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
         for row in envir:
             csvwriter.writerow(row)
         print("You have successfully run this model."
-          "Simulation ended and density saved")
+          "Density saved")
 
 
 root = tkinter.Tk()

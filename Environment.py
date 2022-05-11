@@ -16,24 +16,24 @@ import pandas as pd
 
 class Environment:
     def __init__(self):
-        """Environment Constructor.
-
-                Environment is made empty and read in with readEnvironment function
-                drunk-data.to_numpy -
-                get_location -
-                Environment test finds all pixel identified as pubs and houses
-                Parameters
-                ----------
-                None.
-                ------
-                Returns
-                -------
-                None.
-        """
         self.environment = None
 
     # Function creating Environment
     def read_environment(self):
+        """Environment Constructor.
+
+                        Environment is made empty and read in with readEnvironment function
+                        drunk-data.to_numpy -
+                        get_location -
+                        Environment test finds all pixel identified as pubs and houses
+                        Parameters
+                        ----------
+                        None.
+                        ------
+                        Returns
+                        -------
+                        None.
+                """
         # Load csv file into a Dataframe
         drunkdata = pd.read_csv('drunk.csv')
 
