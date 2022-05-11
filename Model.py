@@ -29,7 +29,7 @@ Step 1: Set-up parameters
 print("Step 1: Set-up parameters")
 print("This is the name of the script: ", argv[0])
 
-num_of_drunks = 10
+num_of_drunks = 25
 num_of_iterations = 500
 print("Number of arguments: ", len(argv))
 
@@ -54,7 +54,7 @@ drunks = []
 # Make the drunks.
 for i in range(num_of_drunks):
     # Houses are identified in increments of 10 From 10 to 250.
-    house = ((1 + i) * 10)
+    home = ((1 + i) * 10)
     drunks.append(Drunk(envir, drunks, house))
 
 
@@ -129,17 +129,15 @@ ax = fig.add_axes([0, 0, 1, 1])
 
 
 def run():
-    print("Step 6: Run Animation.")
+    print("Step 6: Animation.")
     global animation
 
-    animation = anim.FuncAnimation(fig, update, interval=1, repeat=False, frames=200)
+    animation = anim.FuncAnimation(fig, update, interval=1, repeat=False, frames=500)
     canvas.draw()
 
 
 def stop():
     quit()
-    save_density()
-    print("Simulation ended and density saved")
 
 
 def save_density():
@@ -147,6 +145,8 @@ def save_density():
         csvwriter = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
         for row in envir:
             csvwriter.writerow(row)
+        print("You have successfully run this model."
+          "Simulation ended and density saved")
 
 
 root = tkinter.Tk()
@@ -160,8 +160,8 @@ model_menu = tkinter.Menu(menu_bar)
 menu_bar.add_cascade(label="Model", menu=model_menu)
 model_menu.add_command(label="Run model", command=run, state="normal")
 model_menu.add_command(label="Clear model", command=stop, state="normal")
+model_menu.add_command(label="Save Density", command=save_density, state="normal")
 
 tkinter.mainloop()
-print("A GUI window appears. Select ""Run model" "from menu to run the model.")
 
 
