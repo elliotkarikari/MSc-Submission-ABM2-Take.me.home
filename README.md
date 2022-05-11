@@ -6,8 +6,11 @@ __Software Design Process__
 
 
 In approaching this work, I divided the problem into smaller chunks, beginning by answering three primary questions that I thought would help me develop my model.
-__1.	Where is the pub?__ 
+
+__1.	Where is the pub?__
+
 __2.	Where are the drunks’ homes?__ 
+
 __3.	How can I identify patterns in paths taken home?__ 
 
 
