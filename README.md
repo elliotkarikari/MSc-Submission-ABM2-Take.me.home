@@ -14,5 +14,12 @@ __2.	Where are the homes?__
 __3.	How can I identify patterns in paths taken home?__ 
 
 
+Data for the task is found in the __input file__
+
+
 To improve comprehension, I divided my code into three files. __The Environment.py__ file contains everything relevant to the environment. __The Framework.py__ file contains all attributional attributes, whereas the __Model.py file__ combines these two to create the animated model.
 To improve reusability, code is commented. This program's architecture allows for future enhancements. Several tests are also run in the program to tell the developer of what is occurring at various levels of the written code.
+
+
+__Documentation__
+Generated through Sphinx. Found in the Sphix folder. 
