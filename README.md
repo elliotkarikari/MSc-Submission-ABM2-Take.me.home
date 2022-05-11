@@ -9,7 +9,7 @@ In approaching this work, I divided the problem into smaller chunks, beginning b
 
 __1.	Where is the pub?__
 
-__2.	Where are the drunks’ homes?__ 
+__2.	Where are the homes?__ 
 
 __3.	How can I identify patterns in paths taken home?__ 
 
