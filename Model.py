@@ -1,39 +1,54 @@
+"""
+__version__  1.0
+
+This model is executed using a graphical user interface with a run menu.
+When you run this code, a window should appear on your computer screen.
+To run the model, navigate to this window and choose run from the menu bar.
+To end the modl running choose the clear button in the menu bar.
+"""
 # Imports Libraries
+
+
+import csv
+import random
+import tkinter
+from sys import argv
+
 import matplotlib
 
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-import tkinter
-import random
 import matplotlib.animation as anim
 from Framework import Drunk
 from Environment import Environment
-import csv
 
 '''
-Step 1: Initialise parameters
+Step 1: Set-up parameters
 '''
 
-print("Step 1: Initialise parameters")
+print("Step 1: Set-up parameters")
+print("This is the name of the script: ", argv[0])
+
 num_of_drunks = 10
 num_of_iterations = 500
+print("Number of arguments: ", len(argv))
 
 '''
-Step 2: Initialise environment this will contain data about the spatial 
+Step 2: Set-up environment this will contain data about the spatial 
 environment in which agents act.
 
 '''
 
-print("Step 2: Initialise environment")
+print("Step 2: Set-up environment")
 # Reads in environment
 env = Environment()
 envir = env.read_environment()
 print(envir.shape)
 
 '''
-Step 3: Initialise agents.
+Step 3: Set-up agents.
 '''
-print("Step 3: Initialise agents.")
+print("Step 3: Create drunks.")
 # Defining Variables
 drunks = []
 # Make the drunks.
@@ -42,9 +57,6 @@ for i in range(num_of_drunks):
     house = ((1 + i) * 10)
     drunks.append(Drunk(envir, drunks, house))
 
-carry_on = True
-fig = matplotlib.pyplot.figure(figsize=(7, 7))
-ax = fig.add_axes([0, 0, 1, 1])
 
 print("Step 4: Animate drunks.")
 '''
@@ -71,7 +83,7 @@ def update(frames):
         location = envir[drunks[j].y][drunks[j].x]
 
         if location != drunks[j].house and drunks[
-            j].is_at_home == False:  # Assigning False to drunsk when location is not house
+            j].is_at_home == False:  # Assigning False to drunks when location is not house
             drunks[j].move()
             drunks[j].steps(drunks[j].y, drunks[j].x)
         else:
@@ -85,9 +97,9 @@ def update(frames):
 
         plt.ylim(0, 300)
         plt.xlim(0, 300)
-        plt.imshow(envir, cmap="Set3")
+        plt.imshow(envir, cmap="afmhot")
         plt.xlabel("Drunks stop moving when home")
-        plt.title(label="This model show my like route home after a good time at the pub",
+        plt.title(label="Likely routes home after a good time at the pub",
                   loc="center",
                   fontstyle='italic')
 
@@ -97,6 +109,14 @@ def update(frames):
             plt.scatter(drunks[a].x, drunks[a].y)
             plt.show()
 
+
+'''
+Step 5: GUI Parameters.
+'''
+print("Step 5: Set-Up GUI")
+carry_on = True
+fig = matplotlib.pyplot.figure(figsize=(7, 7))
+ax = fig.add_axes([0, 0, 1, 1])
 
 """ Run function runs simulation.  
     Quit function quits animation
@@ -109,29 +129,28 @@ def update(frames):
 
 
 def run():
-    print("Step 5: Run Animation.")
+    print("Step 6: Run Animation.")
+    global animation
 
     animation = anim.FuncAnimation(fig, update, interval=1, repeat=False, frames=200)
     canvas.draw()
 
-def quit():
-    global root
-    root.quit()
+
+def stop():
+    quit()
     save_density()
-    print("Simulation ended")
+    print("Simulation ended and density saved")
 
 
 def save_density():
-    with open('environment.density.txt', 'w', newline='') as f:
+    with open('environment_density.csv', 'w', newline='') as f:
         csvwriter = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
         for row in envir:
             csvwriter.writerow(row)
 
 
-'''Creates GUI'''
-
 root = tkinter.Tk()
-root.wm_title("Model")
+root.wm_title("Planning for Drunks")
 canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root, )
 canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
 
@@ -140,6 +159,9 @@ root.config(menu=menu_bar)
 model_menu = tkinter.Menu(menu_bar)
 menu_bar.add_cascade(label="Model", menu=model_menu)
 model_menu.add_command(label="Run model", command=run, state="normal")
-model_menu.add_command(label="Clear model", command=quit, state="normal")
+model_menu.add_command(label="Clear model", command=stop, state="normal")
 
 tkinter.mainloop()
+print("A GUI window appears. Select ""Run model" "from menu to run the model.")
+
+

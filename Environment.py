@@ -16,7 +16,7 @@ import pandas as pd
 
 class Environment:
     def __init__(self):
-        """Envrionment Constructor.
+        """Environment Constructor.
 
                 Environment is made empty and read in with readEnvironment function
                 drunk-data.to_numpy -
