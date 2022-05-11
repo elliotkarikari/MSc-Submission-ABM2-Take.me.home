@@ -1,5 +1,5 @@
 # Show.me.home
-The brief for this exercise reads, “A town is full with drunks”. As a town planning personnel, __create a model that displays drunks’ likely routes on home.__ This understanding should help the local planning authority put safeguards in place to protect its citizens.
+The brief for this exercise reads, “A town is full with drunks”. As a town planning personnel, __create a model that simulates drunks’ likely routes home from a pub.__ This understanding should help the local planning authority put safeguards in place to protect its citizens.
 
 
 __Software Design Process__
