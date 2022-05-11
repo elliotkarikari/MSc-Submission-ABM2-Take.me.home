@@ -17,7 +17,9 @@ __3.	How can I identify patterns in paths taken home?__
 Data for the task is found in the __input file__
 
 
-To improve comprehension, I divided my code into three files. __The Environment.py__ file contains everything relevant to the environment. __The Framework.py__ file contains all attributional attributes, whereas the __Model.py file__ combines these two to create the animated model. Once model is run, density(output) can be saved. Saved output is found as __environment_density.csv__
+To improve comprehension, I divided my code into three files. __The Environment.py__ file contains everything relevant to the environment. __The Framework.py__ file contains all attributional attributes, whereas the __Model.py file__ combines these two to create the animated model. Once model is run, density(output) can be saved. Saved output is found as __environment_density.csv__.
+
+
 To improve reusability, code is commented. This program's architecture allows for future enhancements. Several tests are also run in the program to tell the developer of what is occurring at various levels of the written code.
 
 
