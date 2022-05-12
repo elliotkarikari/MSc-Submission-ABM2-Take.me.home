@@ -45,7 +45,7 @@ class Drunk:
                         Functions
                         ----------
                         move_up - if self.y is greater than the shape of the environment
-                        self.y would be set to zero and returns location.
+                        self.y would be set to zero.
                         (if y position goes beyond map. y goes through the opposite side)
 
                         Returns
